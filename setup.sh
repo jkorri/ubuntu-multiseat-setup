@@ -1,5 +1,13 @@
 #!/bin/bash
 
+get_details() {
+if [[ "$GIT_USER_NAME" == "" || "$EMAIL" == "" ]];
+then
+  read -p "GIT Username: " GIT_USER_NAME
+  read -p "Email address: " EMAIL
+fi
+}
+
 #Install nvidia driver
 sudo apt-get install nvidia-current
 
@@ -7,7 +15,10 @@ sudo apt-get install nvidia-current
 sudo apt-get install flashplugin-installer
 
 #Install git
-sudo apt-get install  git
+sudo apt-get install git
+get_details
+git config --global user.name "$GIT_USER_NAME"
+git config --global user.email $EMAIL
 
 #Install Chrome
 mkdir -p ./tmp
@@ -19,7 +30,6 @@ fi
 sudo dpkg -i ./tmp/$CHROME_PACKAGE
 sudo apt-get -f install
 sudo dpkg -i ./tmp/$CHROME_PACKAGE
-
 
 #Setup multiseat
 XORG_CONF=/etc/X11/xorg.conf
