@@ -22,23 +22,7 @@ sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1
 }
 
 #Enable chrome/mozilla java plugin for all users
-fix_java_plugin() {
-
-LINK_NAME=/home/$1/.mozilla/plugins/libnpjp2.so
-LINK_TARGET=/usr/lib/jvm/jdk1.7.0_04/jre/lib/amd64/libnpjp2.so
-
-if [ -f $LINK_NAME ] && [ `ls -l $LINK_NAME | cut -d">" -f2` = $LINK_TARGET ];
-then
-  echo Link target already set for $1
-  return
-fi
-
-sudo -u $1 mkdir -p `dirname $LINK_NAME`
-sudo -u $1 ln -s $LINK_TARGET $LINK_NAME
-echo Set link target for user $1
-
-}
-for_each_user fix_java_plugin {}
+for_each_user set_symlink {} /usr/lib/jvm/jdk1.7.0_04/jre/lib/amd64/libnpjp2.so /home/{}/.mozilla/plugins/libnpjp2.so
 
 
 
