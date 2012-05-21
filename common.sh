@@ -27,3 +27,17 @@ sudo -u $1 mkdir -p `dirname $LINK_NAME`
 sudo -u $1 ln -s $LINK_TARGET $LINK_NAME
 echo Set $LINK_NAME link target to $LINK_TARGET for user $USERNAME
 }
+
+configure() {
+FILE=$1
+FIND=$2
+REPLACE=$3
+
+sudo sed -i "s/$FIND/$REPLACE/g" $FILE
+
+grep -q $FIND $FILE
+if [ ! $? -eq 0 ];
+then
+  sudo bash -c "echo \"$REPLACE\" >> $FILE"
+fi
+}
