@@ -13,14 +13,14 @@ USERNAME=$1
 LINK_TARGET=$2
 LINK_NAME=$3
 
-if [ -f $LINK_NAME ]
+if [ -f $LINK_NAME ] || [ -d $LINK_NAME ];
 then
-  if  [ `ls -l $LINK_NAME | cut -d">" -f2` = $LINK_TARGET ]
+  if [ -h $LINK_NAME ] && [ `ls -l $LINK_NAME | cut -d">" -f2` = $LINK_TARGET ]
   then
     echo Link target for $LINK_NAME already set to $LINK_TARGET for user $USERNAME
     return
   fi
-  sudo rm -f $LINK_NAME
+  sudo rm -rf $LINK_NAME
 fi
 
 sudo -u $1 mkdir -p `dirname $LINK_NAME`
