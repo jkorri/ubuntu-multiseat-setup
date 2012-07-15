@@ -35,9 +35,10 @@ REPLACE=$3
 
 sudo sed -i "s/$FIND/$REPLACE/g" $FILE
 
-grep -q $FIND $FILE
+grep -q -E "$FIND" $FILE
 if [ ! $? -eq 0 ];
 then
-  sudo bash -c "echo \"$REPLACE\" >> $FILE"
+  sudo sed -i "\$ a\
+$REPLACE" $FILE
 fi
 }
