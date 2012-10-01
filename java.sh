@@ -29,5 +29,8 @@ install_java
 #Enable chrome/mozilla java plugin for all users
 for_each_user set_symlink {} "/usr/lib/jvm/$JDK_DIR/jre/lib/amd64/libnpjp2.so" /home/{}/.mozilla/plugins/libnpjp2.so
 
+#Fix swt library issue which causes Eclipse not to start with Oracle JVM, see http://stackoverflow.com/questions/10165693/ubuntu-eclipse-cannot-load-swt-libraries-not-opening
+#for_each_user set_symlink {} '/usr/lib/jni/libswt-*' /home/{}/.swt/lib/linux/x86_64/
+
 
 
