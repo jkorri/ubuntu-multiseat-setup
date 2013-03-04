@@ -3,11 +3,11 @@
 
 . ./common.sh
 
-JDK_DIR=jdk1.7.0_07
+JDK_DIR=jdk1.7.0_15
 
 install_java() {
 #Install java, assumes download present in ./tmp
-JAVA_PACKAGE=jdk-7u7-linux-x64.tar.gz
+JAVA_PACKAGE=jdk-7u15-linux-x64.tar.gz
 
 if [ ! -f ./tmp/$JAVA_PACKAGE ]
 then
@@ -19,9 +19,9 @@ sudo mv ./tmp/$JAVA_PACKAGE /usr/lib/jvm/
 cd /usr/lib/jvm/
 sudo tar zxvf $JAVA_PACKAGE
 
-sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/$JDK_DIR/bin/java" 1062
-sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/$JDK_DIR/bin/javac" 1062
-sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/$JDK_DIR/bin/javaws" 1062
+sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/$JDK_DIR/bin/java" 1063
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/$JDK_DIR/bin/javac" 1063
+sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/$JDK_DIR/bin/javaws" 1063
 }
 
 install_java
