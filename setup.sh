@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 get_details() {
@@ -30,6 +31,9 @@ fi
 sudo dpkg -i ./tmp/$CHROME_PACKAGE
 sudo apt-get -f install
 sudo dpkg -i ./tmp/$CHROME_PACKAGE
+
+#Install restricted extras for mp3 support
+sudo apt-get install ubuntu-restricted-extras
 
 #Packages should be updated
 
